@@ -1,3 +1,6 @@
+$previousLocation = Get-Location
+Set-Location $PSScriptRoot
+
 $existingSolutions = Get-ChildItem -Recurse -Filter ????.fs `
 	| ForEach-Object { $_.Name.Substring(0, 4) -as [int] } `
 	| Measure-Object -Maximum `
@@ -21,4 +24,4 @@ Copy-Item $oldPath $newPath
 $contents = Get-Content $newPath
 $contents -replace $oldFileName, $newFileName | Set-Content $newPath
 
-Set-Location $PSScriptRoot
+Set-Location $previousLocation
