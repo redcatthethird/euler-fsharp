@@ -6,8 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include=".gitignore" />
-    <Compile Include="*.fs" />
+    <Compile Include="**\*.fs" Exclude="obj\**" />
   </ItemGroup>
 
   <ItemGroup />
