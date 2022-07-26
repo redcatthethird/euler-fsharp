@@ -10,5 +10,3 @@ let solution n =
     |> Seq.filter (fun x -> x % 2 = 0)
     |> Seq.takeWhile ((>) n)
     |> Seq.sum
-
-printf "ok"
