@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <None Include=".gitignore" />
-    <Compile Include="Program.fs" />
+    <Compile Include="*.fs" />
   </ItemGroup>
 
   <ItemGroup />
