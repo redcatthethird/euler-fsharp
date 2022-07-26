@@ -6,6 +6,7 @@ let divisibleBy div x = x % div = 0
 
 let divisibleBy3Or5 x = divisibleBy 3 x || divisibleBy 5 x
 
-let solution = numbersUntil 1000 |>
-                List.filter divisibleBy3Or5 |>
-                List.sum
+let solution =
+    numbersUntil >>
+    List.filter divisibleBy3Or5 >>
+    List.sum
