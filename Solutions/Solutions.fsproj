@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="**\*.fs" Exclude="obj\**" />
+	  <Compile Include="utilities\*.fs" />
+	  <Compile Include="??\*.fs" />
   </ItemGroup>
 
 </Project>

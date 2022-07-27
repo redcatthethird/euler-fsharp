@@ -4,8 +4,8 @@ open Xunit
 
 [<Fact>]
 let ``Solution should be correct for real case`` () =
-    Assert.Equal(S0001.solution 1000, 233168)
+    Assert.Equal(233168, S0001.solution 1000)
 
 [<Fact>]
 let ``Solution should be correct for trivial case`` () =
-    Assert.Equal(S0001.solution 10, 23)
+    Assert.Equal(23, S0001.solution 10)

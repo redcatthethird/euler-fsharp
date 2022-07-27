@@ -1,11 +1,11 @@
-module T0003
+module T0005
 
 open Xunit
 
 [<Fact>]
 let ``Solution should be correct for real case`` () =
-    Assert.Equal(6857L, S0003.solution 600851475143L)
+    Assert.Equal(232792560, S0005.solution 20)
 
 [<Fact>]
 let ``Solution should be correct for trivial case`` () =
-    Assert.Equal(29L, S0003.solution 13195L)
+    Assert.Equal(2520, S0005.solution 10)
