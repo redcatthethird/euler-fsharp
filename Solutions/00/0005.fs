@@ -1,7 +1,5 @@
 module S0005
 open Factors
-open Integral
-open Func
 open Series
 
 let solution =
