@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="**\*.fs" Exclude="obj\**" />
+	  <Compile Include="**\*.fs" Exclude="obj\**;Program.fs" />
+	  <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <Compile Include="utilities\*.fs" />
-	  <Compile Include="??\*.fs" />
+	  <None Include="prelude.fsx" />
+	  <Compile Include="utilities\func.fs" />
+	  <Compile Include="utilities\int.fs" />
+	  <Compile Include="utilities\factors.fs" />
+	  <Compile Include="utilities\series.fs" />
+	  <Compile Include="??\????.fs" />
   </ItemGroup>
+
+  <ItemGroup />
 
 </Project>

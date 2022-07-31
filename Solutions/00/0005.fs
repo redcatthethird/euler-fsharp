@@ -1,9 +1,12 @@
 module S0005
-open Utilities.Factors
+open Factors
+open Integral
+open Func
+open Series
 
-let dividesByAllUpTo n x =
-    n
-    |> numbersUntil
-    |> List.forall (fun div -> divisibleBy div x)
-
-let solution n = Seq.initInfinite id |> Seq.skip 2 |> Seq.find (dividesByAllUpTo n)
+let solution =
+    numbersUntil
+    >> List.map primeFactorQuantities
+    >> List.reduce (zipFactorLists max)
+    >> List.map (fun f -> pown f.Factor f.Quantity)
+    >> List.reduce (*)

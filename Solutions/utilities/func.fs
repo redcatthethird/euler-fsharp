@@ -1,4 +1,3 @@
-﻿namespace Utilities
-module Func =
+﻿module Func
 
-    let applySecond f arg2 = f >> (|>) arg2
+let applySecond f arg2 = f >> (|>) arg2

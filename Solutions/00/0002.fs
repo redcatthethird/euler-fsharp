@@ -1,9 +1,5 @@
 ﻿module S0002
-
-let rec fib = function
-    | n when n <= 0 -> 0
-    | 1 -> 1
-    | n -> fib(n-1) + fib(n-2)
+open Series
 
 let solution n =
     Seq.initInfinite fib
