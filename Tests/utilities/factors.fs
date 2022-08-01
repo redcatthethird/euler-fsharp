@@ -24,5 +24,5 @@ module FactorsTest =
 
     [<Theory>]
     [<MemberData(nameof(primeFactorQuantitiesSingle))>]
-    let ``primeFactorQuantities should return correct values`` n fs =
-        Assert.Contains(fs, primeFactorQuantities n)
+    let ``primeFactorQuantities should return correct values`` n f =
+        Assert.Contains(f, primeFactorQuantities n)
