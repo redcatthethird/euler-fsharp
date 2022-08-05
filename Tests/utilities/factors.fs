@@ -11,7 +11,7 @@ module FactorsTest =
             [| 1 |]
         ]
 
-    [<Theory>]
+    [<Theory; MemberData(nameof(primeFactorQuantitiesEmpty))>]
     [<MemberData(nameof(primeFactorQuantitiesEmpty))>]
     let ``primeFactorQuantities should return empty`` n =
         Assert.Empty(primeFactorQuantities n)
@@ -22,7 +22,7 @@ module FactorsTest =
             [| 8; { Factor = 2; Quantity = 3 } |]
         ]
 
-    [<Theory>]
+    [<Theory; MemberData(nameof(primeFactorQuantitiesSingle))>]
     [<MemberData(nameof(primeFactorQuantitiesSingle))>]
     let ``primeFactorQuantities should return correct values`` n f =
         Assert.Contains(f, primeFactorQuantities n)

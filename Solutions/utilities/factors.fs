@@ -7,10 +7,10 @@ open Integral
 let inline divisibleBy div x = x % div = 0G
 
 let inline factors n =
-    [2G .. isqrt n]
+    [2G .. n / 2]
     |> List.filter (applySecond divisibleBy n)
 
-let inline isPrime n = n |> factors |> List.isEmpty
+let inline allFactors n = 1G :: n :: factors n
 
 let primes = Seq.initInfinite id |> Seq.skip 2 |> Seq.filter isPrime
 
