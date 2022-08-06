@@ -13,6 +13,5 @@ module PrimesTest =
         ]
 
     [<Theory; MemberData(nameof(numberOfPrimes))>]
-    [<MemberData(nameof(numberOfPrimes))>]
     let ``primes should return correct values`` n np =
         Assert.Equal(np, () |> primes |> Seq.takeWhile ((>=) n) |> Seq.length)

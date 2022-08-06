@@ -2,6 +2,8 @@ module S0005
 open Factors
 open Series
 
+let pown n p = Operators.pown n <| int p
+
 let solution =
     numbersUntil
     >> List.map primeFactorQuantities

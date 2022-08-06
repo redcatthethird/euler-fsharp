@@ -1,26 +1,24 @@
 ﻿module Factors
 open System.Diagnostics
 
-open Func
 open Integral
+open Primes
 
-let inline divisibleBy div x = x % div = 0G
+let inline divisibleBy n div = n % div = 0G
+
+let inline isPrime n = not ({2G..isqrt n} |> Seq.exists (divisibleBy n))
 
 let inline factors n =
-    [2G .. n / 2]
-    |> List.filter (applySecond divisibleBy n)
-
-let inline allFactors n = 1G :: n :: factors n
-
-let primes = Seq.initInfinite id |> Seq.skip 2 |> Seq.filter isPrime
+    [1G .. isqrt n]
+    |> List.filter (divisibleBy n)
+    |> List.collect (fun div -> [div; n / div])
 
 [<DebuggerDisplay("{Factor}^{Quantity}")>]
 type PrimeFactorQuantity =
-    { Factor : int; Quantity : int }
+    { Factor : Prime; Quantity : uint }
     static member (+) (a, b) =
         if a.Factor = b.Factor then { a with Quantity = a.Quantity + b.Quantity }
         else failwith "Cannot add prime factor quantities for different factors"
-
 
 let zipFactorLists zipper a b =
     let zipFactorQuantities f =
@@ -34,18 +32,20 @@ let zipFactorLists zipper a b =
     
 let inline primeFactors n = n |> factors |> List.filter isPrime
 
-let newFactor n = { Factor = n; Quantity = 1 }
+let inline (^) n q = { Factor = uint64 n; Quantity = uint q }
+
+let inline (!) n = n^1
+
+let inline (<+>) f fs =
+    let existingFactor, restFactors = fs |> List.partition (fun f' -> f'.Factor = f)
+    match existingFactor |> List.tryHead with
+    | Some factor -> factor + !f :: restFactors
+    | None -> !f :: restFactors
 
 let primeFactorQuantities =
-    let addFactor f fs =
-        let existingFactor, restFactors = fs |> List.partition (fun f' -> f'.Factor = f)
-        match existingFactor |> List.tryHead with
-        | Some factor -> factor + newFactor f :: restFactors
-        | None -> newFactor f :: restFactors
-    let rec impl fs n' =
-        if n' <= 1 then fs
-        elif isPrime n' then addFactor n' fs
-        else
-            let firstFactor = n' |> primeFactors |> List.head
-            impl (addFactor firstFactor fs) (n' / firstFactor)
-    impl [] >> List.sort
+    let rec impl d n' =
+        if n' <= 1G then []
+        elif n' < (d * d) then [!n']
+        elif divisibleBy n' d then d <+> impl d (n'/d)
+        else impl (d+1G) n'
+    impl 2G >> List.sort

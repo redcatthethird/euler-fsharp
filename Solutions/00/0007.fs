@@ -1,4 +1,4 @@
 module S0007
-open Factors
+open Primes
 
-let solution n = primes |> Seq.skip (n - 1) |> Seq.head
+let solution n = primes () |> Seq.item (n - 1)

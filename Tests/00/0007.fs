@@ -5,8 +5,8 @@ module T0007 =
 
     [<Fact>]
     let ``Solution should be correct for real case`` () =
-        Assert.Equal(104743, S0007.solution 10001)
+        Assert.Equal(104743UL, S0007.solution 10001)
 
     [<Fact>]
     let ``Solution should be correct for trivial case`` () =
-        Assert.Equal(13, S0007.solution 6)
+        Assert.Equal(13UL, S0007.solution 6)

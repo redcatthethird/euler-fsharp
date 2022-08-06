@@ -1,12 +1,11 @@
 ﻿module S0001
 open Factors
-open Func
 open Series
 
-let divisibleBy3Or5 x = divisibleBy 3 x || divisibleBy 5 x
+let divisibleBy3Or5 x = divisibleBy x 3 || divisibleBy x 5
 
-let solution =
-    applySecond (-) 1 >>
-    numbersUntil >>
-    List.filter divisibleBy3Or5 >>
-    List.sum
+let solution n =
+    n - 1
+    |> numbersUntil
+    |> List.filter divisibleBy3Or5
+    |> List.sum
