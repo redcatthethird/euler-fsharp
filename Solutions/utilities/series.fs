@@ -13,19 +13,17 @@ let rec fib = function
     | 1 -> 1
     | n -> fib(n-1) + fib(n-2)
 
-let inline collatzStep n =
+let collatzStep n =
     match n with
-    | _ when n = 1G -> 1G
-    | Even -> n / 2G
-    | Odd -> 3G*n + 1G
+    | 1UL -> 1UL
+    | Even -> n / 2UL
+    | Odd -> 3UL*n + 1UL
     | _ -> failwith "n is impossible"
 
-let rec inline collatzChain n =
-    match n with
-    | _ when n = 1G -> [1G]
-    | _ -> n :: (n |> collatzStep |> collatzChain)
+let rec collatzChain = function
+    | 1UL -> [1UL]
+    | n -> n :: (n |> collatzStep |> collatzChain)
 
-let rec inline collatzLength n =
-    match n with
-    | _ when n = 1G -> 0UL
-    | _ -> 1UL + (n |> collatzStep |> collatzLength)
+let rec collatzLength = function
+    | 1UL -> 1UL
+    | n -> 1UL + (n |> collatzStep |> collatzLength)
