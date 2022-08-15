@@ -6,6 +6,8 @@ open Primes
 
 let inline divisibleBy n div = n % div = 0G
 
+let inline (|Even|Odd|) n = if divisibleBy n 2G then Even else Odd
+
 let inline isPrime n = not ({2G..isqrt n} |> Seq.exists (divisibleBy n))
 
 let inline factors n =
