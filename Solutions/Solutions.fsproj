@@ -6,6 +6,7 @@
 
   <ItemGroup>
 	  <None Include="prelude.fsx" />
+	  <Compile Include="utilities\memo.fs" />
 	  <Compile Include="utilities\int.fs" />
 	  <Compile Include="utilities\primes.fs" />
 	  <Compile Include="utilities\factors.fs" />
