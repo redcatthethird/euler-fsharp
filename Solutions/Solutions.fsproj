@@ -11,6 +11,7 @@
 	  <Compile Include="utilities\primes.fs" />
 	  <Compile Include="utilities\factors.fs" />
 	  <Compile Include="utilities\series.fs" />
+	  <Compile Include="utilities\nav2dint32.fs" />
 	  <Compile Include="??\????.fs" />
   </ItemGroup>
 

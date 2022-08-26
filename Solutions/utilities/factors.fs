@@ -15,7 +15,7 @@ let inline factors n =
     |> List.filter (divisibleBy n)
     |> List.collect (fun div -> [div; n / div])
 
-[<DebuggerDisplay("{Factor}^{Quantity}")>]
+[<Struct; DebuggerDisplay("{Factor}^{Quantity}")>]
 type PrimeFactorQuantity =
     { Factor : Prime; Quantity : uint }
     static member (+) (a, b) =

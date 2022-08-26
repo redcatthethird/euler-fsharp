@@ -1,5 +1,7 @@
 module S0011
 
+open Nav2DInt32
+
 let mat = array2D [
     [08; 02; 22; 97; 38; 15; 00; 40; 00; 75; 04; 05; 07; 78; 52; 12; 50; 77; 91; 08];
     [49; 49; 99; 40; 17; 81; 18; 57; 60; 87; 17; 40; 98; 43; 69; 48; 04; 56; 62; 00];
@@ -23,51 +25,28 @@ let mat = array2D [
     [01; 70; 54; 71; 83; 51; 54; 69; 16; 92; 33; 48; 61; 43; 52; 01; 89; 19; 67; 48]
 ]
 
-let sideLength = 20
+let sideLength = mat |> Array2D.length1
 
-type Direction =
-    | Horizontal
-    | Vertical
-    | Dexter
-    | Sinister
+let directions = [East; South; NorthWest; SouthEast]
 
-let matStart = (0, 0)
-let matEnd = (sideLength-1, sideLength-1)
+let vMat = { N = sideLength }
 
-let multC (y, x) n = (n * y, n * x)
-let addC (y1, x1) (y2, x2) = (y1 + y2, x1 + x2)
-let lteC (y1, x1) (y2, x2) = y1 <= y2 && x1 < x2
+let offset d coords n = coords + n * (screenSpaceOffset d)
 
-let offsetOf = function
-    | Horizontal -> (0, 1)
-    | Vertical -> (1, 0)
-    | Dexter -> (-1, -1)
-    | Sinister -> (1, -1)
-
-let offset d coords n = addC coords (multC (offsetOf d) n)
-
-let isInRange d coords n =
-    let terminus = offset d coords n
-    (lteC matStart terminus) && (lteC terminus matEnd)
+let isInRange d coords n = offset d coords n |> vMat.IsInRange
 
 let reduceRange d coords n op =
     [0..n-1]
     |> List.map (offset d coords)
-    |> List.map (fun (y, x) -> mat.[y, x])
+    |> List.map (fun v -> mat.[v.Y, v.X])
     |> List.reduce op
-
-let allCoords =
-    Seq.init sideLength id
-    |> Seq.collect (fun y -> Seq.init sideLength (fun x -> (y, x)))
 
 let searchLength = 4
 
-let allValidOffsets = 
-    allCoords
-    |> Seq.collect (fun coords -> [Horizontal; Vertical; Dexter; Sinister] |> List.map (fun d -> (d, coords)))
-    |> Seq.filter (fun (d, coords) -> isInRange d coords searchLength)
-
 let solution =
-    allValidOffsets
+    Seq.init sideLength id
+    |> Seq.collect (fun y -> Seq.init sideLength (fun x -> { X = x; Y = y }))
+    |> Seq.collect (fun coords -> directions |> List.map (fun d -> (d, coords)))
+    |> Seq.filter (fun (d, coords) -> isInRange d coords searchLength)
     |> Seq.map (fun (d, coords) -> reduceRange d coords searchLength (*))
     |> Seq.max

@@ -24,7 +24,7 @@ let memoizeRec f =
             value
     g
 
-let memoize1D ni invalid f =
+let inline memoize1D ni invalid f =
     let cache = Array.create ni invalid
     let rec g key = h key
     and h key =

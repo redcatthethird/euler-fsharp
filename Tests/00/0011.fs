@@ -9,15 +9,15 @@ module T0011 =
 
     let rangeTestData: obj[] list =
         [
-            [| S0011.Horizontal; 0; 19; 4; false |]
-            [| S0011.Dexter; 0; 0; 4; false |]
-            [| S0011.Dexter; 19; 19; 4; true |]
-            [| S0011.Dexter; 19; 0; 4; false |]
-            [| S0011.Dexter; 0; 19; 4; false |]
-            [| S0011.Sinister; 0; 0; 4; false |]
-            [| S0011.Sinister; 19; 19; 4; false |]
-            [| S0011.Sinister; 0; 19; 4; true |]
-            [| S0011.Sinister; 19; 0; 4; false |]
+            [| Nav2DInt32.East; 0; 19; 4; false |]
+            [| Nav2DInt32.NorthWest; 0; 0; 4; false |]
+            [| Nav2DInt32.NorthWest; 19; 19; 4; true |]
+            [| Nav2DInt32.NorthWest; 19; 0; 4; false |]
+            [| Nav2DInt32.NorthWest; 0; 19; 4; false |]
+            [| Nav2DInt32.SouthEast; 0; 0; 4; false |]
+            [| Nav2DInt32.SouthEast; 19; 19; 4; false |]
+            [| Nav2DInt32.SouthEast; 0; 19; 4; true |]
+            [| Nav2DInt32.SouthEast; 19; 0; 4; false |]
         ]
 
     [<Theory; MemberData(nameof(rangeTestData))>]
@@ -26,9 +26,9 @@ module T0011 =
 
     let reduceTestData: obj[] list =
         [
-            [| S0011.Vertical; 0; 0; 4; 1651104 |]
-            [| S0011.Horizontal; 0; 3; 4; 0 |]
-            [| S0011.Dexter; 3; 3; 4; 279496 |]
+            [| Nav2DInt32.South; 0; 0; 4; 1651104 |]
+            [| Nav2DInt32.East; 0; 3; 4; 0 |]
+            [| Nav2DInt32.NorthWest; 3; 3; 4; 279496 |]
         ]
 
     [<Theory; MemberData(nameof(reduceTestData))>]
@@ -37,8 +37,8 @@ module T0011 =
 
     let offsetTestData: obj[] list =
         [
-            [| S0011.Vertical; 0; 0; 1; 1; 0 |]
-            [| S0011.Horizontal; 0; 3; 4; 0; 7 |]
+            [| Nav2DInt32.South; 0; 0; 1; 1; 0 |]
+            [| Nav2DInt32.East; 0; 3; 4; 0; 7 |]
         ]
 
     [<Theory; MemberData(nameof(offsetTestData))>]
